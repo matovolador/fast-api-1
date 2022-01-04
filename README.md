@@ -6,9 +6,9 @@ We want like you to create a single endpoint following the following spec using 
 * migration
 * handler
 
-### Create an endpoint with the route
+### Create an endpoint 
 
-`POST /v1/products/create` that takes in the following request payload.
+Create an endpoint with route: `POST /v1/products/create` that takes in the following request payload.
 
 ```json
 {
@@ -46,7 +46,9 @@ We want like you to create a single endpoint following the following spec using 
 }
 ```
 
-Here are the explanations on each of the tables. A `Product` has many ProductVariants. You will be free to determine the best DB types for each column. The endpoint should create the product and variants ALL in a single transaction and rollback if necessary. You will be expected to write validations in the request body parsing layer (using marshmallow or pydantic). 
+Here are the explanations on each of the tables. A `Product` has many `ProductVariants`. You will be free to determine the best DB type for each column. Make sure you do foreign key and make any design consideration like you would designing a production ERP/ecommerce system. 
+
+The endpoint should create the product and variants ALL in a single transaction and rollback if necessary. You will be expected to write validations in the request body parsing layer (using marshmallow or pydantic). 
 
 ### Product Object 
 
@@ -68,7 +70,7 @@ Here are the explanations on each of the tables. A `Product` has many ProductVar
 |    updated_at    |    The timestamp when the product was last updated.    |
 
 
-### ProductVariant object
+### ProductVariant Object
 
 ```json
 {
@@ -93,13 +95,17 @@ Here are the explanations on each of the tables. A `Product` has many ProductVar
 |    ---    |    ---    |
 |    id    |    Unique identifier for the object.    |
 |    sku    |    Unique per sku    |
-|    sales_price    |   sales price of the variant  |
-|    purchase_price    |  purchase price of the variant |
-|    config_attributes | Array of dictionary |
+|    sales_price    |   Sales price of the variant  |
+|    purchase_price    |  Purchase price of the variant |
+|    config_attributes | Array of dictionaries |
 
 ### Testing 
 
 Write a simple test that tests your endpoint functionality using your favourite python testsuite (pytest, unittest, etc.).
+
+### Deployment (Bonus)
+
+If time permits, deploy the FastAPI API on Heroku (use free dyno). 
 
 
 
