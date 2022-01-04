@@ -46,7 +46,7 @@ Create an endpoint with route: `POST /v1/products/create` that takes in the foll
 }
 ```
 
-Here are the explanations on each of the tables. A `Product` has many `ProductVariants`. You will be free to determine the best DB type for each column. Make sure you do foreign key and make any design consideration like you would designing a production ERP/ecommerce system. 
+Here are the explanations on each of the tables. A `Product` has many `ProductVariants`. You will be free to determine the best DB type for each column. Make sure you do foreign key and make any design considerations like you would designing a production ERP/ecommerce system. 
 
 The endpoint should create the product and variants ALL in a single transaction and rollback if necessary. You will be expected to write validations in the request body parsing layer (using marshmallow or pydantic). 
 
