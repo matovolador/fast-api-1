@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  api:
+    build: api
+    ports:
+      - 80:5050
+    networks:
+      - unbridaled_test-network
+    depends_on:
+      - 'db'
+    command: ["./wait-for-it.sh","db:5432","--","./start_app.sh"]
+    volumes:
+      - ./api/coverage:/app/coverage
+  db:
+    image: postgres:13
+    restart: always
+    networks:
+      - unbridaled_test-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=unbridaled_test
+      - PGPORT=5432
+
+networks:
+  db-network:
+    driver: bridge
+volumes:
+  db-unbridaled_test-data:
