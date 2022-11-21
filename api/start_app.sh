@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 alembic upgrade head || exit 1
 coverage run tests.py || exit 1
 coverage xml
