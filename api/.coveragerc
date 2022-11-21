@@ -1,0 +1,6 @@
+[html]
+directory=/app/coverage/
+[xml]
+output=/app/coverage/coverage.xml
+[lcov]
+output=/app/coverage/coverage.lcov
