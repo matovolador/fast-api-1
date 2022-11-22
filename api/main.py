@@ -52,7 +52,7 @@ def create_product(product: schemas.ProductCreate):
     db.commit()
     db.refresh(prod)
     db.close()
-    return product
+    return prod.as_dict()
 
 
 if __name__ == "__main__":
