@@ -54,7 +54,7 @@ class Product(BaseMixin,Base):
     updated_at = Column(DateTime(timezone=True),default=func.now())
 
 
-class ProductVariants(BaseMixin,Base):
+class ProductVariant(BaseMixin,Base):
     __tablename__ = 'product_variants'
 
 
