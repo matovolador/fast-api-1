@@ -1,3 +1,5 @@
+[![Coverage Status](./api/coverage/coverage-badge.svg?dummy=8484744)](./backend/coverage/coverage.xml)
+
 ## Unbridaled Python Interview
 
 We want like you to create a single endpoint following the following spec using FastAPI. Your FastAPI project should contain the following
