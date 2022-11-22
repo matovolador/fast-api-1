@@ -1,5 +1,6 @@
 from unittest import TestCase, mock
-from main import app, TestClient
+from main import app
+from fastapi.testclient import TestClient
 
 
 class TestIntegrationMain(TestCase):
