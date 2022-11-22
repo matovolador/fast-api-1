@@ -30,7 +30,7 @@ def create_product(product: schemas.ProductCreate):
         variant = database.ProductVariant(
             sku = vari.sku,
             sales_price = vari.sales_price,
-            product_id = product.id,
+            product_id = prod.id,
             type = product,
             created_at = datetime.now(),
             updated_at = datetime.now()
