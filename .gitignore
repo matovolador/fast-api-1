@@ -1,1 +1,4 @@
 venv
+.vscode
+*Zone.Identifier
+__pycache__
