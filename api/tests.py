@@ -45,6 +45,8 @@ class Tests(TestCase):
         response = self.client.post('/v1/products/create', json=valid_product)
         print(response.text)
         self.assertEqual(200, response.status_code)
+        print(response.json())
+        print("test 1 completed")
 
 if __name__ == "__main__":
     # clean db
