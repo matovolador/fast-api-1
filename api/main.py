@@ -23,16 +23,19 @@ def create_product(db: database.Session, product: schemas.ProductCreate):
     db.add(product)
     db.commit()
     db.refresh(product)
+
     for vari in product.variants:
-        variant = database.ProductVariants(
-            id = vari.id
+        variant = database.ProductVariant(
+            sku = vari.sku,
+            sales_price = vari.sales_price,
+            product_id = product.id,
+            type = product,
+            created_at = datetime.now(),
+            updated_at = datetime.now()
         )
         db.add(variant)
-    product = database.Product(
-        name = product.name
-    )
-
-    db.add(product)
+        db.commit()
+        db.refresh(variant)
     db.commit()
     db.refresh(product)
     return product
