@@ -3,15 +3,15 @@ from typing import Optional,List
 from datetime import datetime, date
 
 
-class ConfigAttributes(BaseModel):
+class ConfigAttribute(BaseModel):
     config_name : str
     config_value: str
-    product_id : int
+    variant_id : int
 
     class Config:
         orm_mode = True
 
-class Variants(BaseModel):
+class ProductVariant(BaseModel):
     id : int
     sku: str
     sales_price: float
