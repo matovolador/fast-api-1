@@ -35,6 +35,7 @@ class BaseMixin(object):
        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
+
 class Product(BaseMixin,Base):
     __tablename__ = 'products'
 
@@ -49,7 +50,6 @@ class Product(BaseMixin,Base):
     purchase_uom = Column(String,nullable=True,default=None)
     purchase_uom_conversion_rate = Column(Numeric,default=None,nullable=True)
     batch_tracked = Column(Boolean,nullable=False,default=False)
-    variants = Column()
     created = Column(DateTime(timezone=True),nullable=False, default=func.now())
     updated_at = Column(DateTime(timezone=True),default=func.now())
 
@@ -57,22 +57,6 @@ class Product(BaseMixin,Base):
 class ProductVariants(BaseMixin,Base):
     __tablename__ = 'product_variants'
 
-    # {
-    #     "id": 1,
-    #     "sku": "EM",
-    #     "sales_price": 40,
-    #     "product_id": 1,
-    #     "purchase_price": 0,
-    #     "type": "product",
-    #     "created_at": "2020-10-23T10:37:05.085Z",
-    #     "updated_at": "2020-10-23T10:37:05.085Z",
-    #     "config_attributes": [
-    #         {
-    #             "config_name": "Type",
-    #             "config_value": "Standard"
-    #         }
-    #     ]
-    # }
 
     id = Column(Integer, primary_key=True)
     sku = Column(String,nullable=False,unique=True)
@@ -81,4 +65,13 @@ class ProductVariants(BaseMixin,Base):
     type = Column(String,nullable=False,default='product')
     created_at = Column(DateTime(timezone=True),nullable=False, default=func.now())
     updated_at = Column(DateTime(timezone=True),default=func.now())
-    # config_attributes = TODO
+    product_id = Column(Integer, ForeignKey=Product.id)
+
+
+class ConfigAttributes(BaseMixin,Base):
+    __tablename__ = 'config_attributes'
+
+    id = Column(Integer,primary_key=True)
+    config_name = Column(String,nullable=False)
+    config_value = Column(String,nullable=False)
+    product_id = Column(Integer,ForeignKey(Product.id))
