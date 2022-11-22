@@ -38,7 +38,7 @@ class Product(BaseModel):
 
     @root_validator
     def conversion_rate_not_none_if_purchase_uom_is_none(cls, values):
-        p_uom, c_rate = values.get('purchase_uom'), values.get('conversion_rate')
+        p_uom, c_rate = values.get('purchase_uom'), values.get('purchase_uom_conversion_rate')
         if p_uom is not None and c_rate is None:
             raise ValueError('purchase_uom_conversion_rate must be populated if purchase_uom is not null')
         return values
