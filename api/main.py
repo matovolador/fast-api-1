@@ -14,6 +14,7 @@ def create_product(product: schemas.ProductCreate):
         uom = product.uom,
         category_name = product.category_name,
         is_producible = product.is_producible,
+        is_purchasable = product.is_purchasable,
         type = 'product',
         additional_info = product.additional_info,
         purchase_uom = product.purchase_uom,
