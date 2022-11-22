@@ -68,7 +68,7 @@ class ProductVariant(BaseMixin,Base):
     product_id = Column(Integer, ForeignKey=Product.id)
 
 
-class ConfigAttributes(BaseMixin,Base):
+class ConfigAttribute(BaseMixin,Base):
     __tablename__ = 'config_attributes'
 
     id = Column(Integer,primary_key=True)
