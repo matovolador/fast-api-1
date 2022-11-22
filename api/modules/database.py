@@ -61,7 +61,6 @@ class ProductVariant(BaseMixin,Base):
     id = Column(Integer, primary_key=True)
     sku = Column(String,nullable=False,unique=True)
     sales_price = Column(Numeric,nullable=False)
-    product_id = Column(Integer,ForeignKey(Product.id))
     type = Column(String,nullable=False,default='product')
     created_at = Column(DateTime(timezone=True),nullable=False, default=func.now())
     updated_at = Column(DateTime(timezone=True),default=func.now())
