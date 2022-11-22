@@ -1,6 +1,7 @@
 from unittest import TestCase
 from main import app
 from fastapi.testclient import TestClient
+from modules import database
 
 class Tests(TestCase):
     def __init__(self):
@@ -44,4 +45,10 @@ class Tests(TestCase):
         response = self.client.post('/v1/products/create', json=valid_product)
 
         self.assertEqual(200, response.status_code)
-        self.assertEqual(valid_product, response.json())
+    # clean db
+    db = next(database.get_db())
+    db.query(database.ConfigAttribute).delete()
+    db.query(database.ProductVariant).delete()
+    db.query(database.Product).delete()
+    db.commit()
+    db.close()
