@@ -7,7 +7,8 @@ from datetime import datetime
 app = FastAPI()
 
 @app.post("/v1/products/create",response_model=schemas.Product)
-def create_product(db: database.Session, product: schemas.ProductCreate):
+def create_product(product: schemas.ProductCreate):
+    db = next(database.get_db())
     product = database.Product(
         name = product.name,
         uom = product.uom,
