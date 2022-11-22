@@ -6,7 +6,6 @@ from datetime import datetime, date
 class ConfigAttribute(BaseModel):
     config_name : str
     config_value: str
-    variant_id : int
 
     
 
