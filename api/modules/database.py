@@ -74,4 +74,4 @@ class ConfigAttribute(BaseMixin,Base):
     id = Column(Integer,primary_key=True)
     config_name = Column(String,nullable=False)
     config_value = Column(String,nullable=False)
-    product_id = Column(Integer,ForeignKey(Product.id))
+    variant_id = Column(Integer,ForeignKey(ProductVariant.id))
