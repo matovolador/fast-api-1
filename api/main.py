@@ -20,7 +20,7 @@ def create_product(product: schemas.ProductCreate):
         purchase_uom = product.purchase_uom,
         purchase_uom_conversion_rate = product.purchase_uom_conversion_rate,
         batch_tracked = product.batch_tracked,
-        created = datetime.now(),
+        created_at = datetime.now(),
         updated_at = datetime.now()
     )
     db.add(prod)
