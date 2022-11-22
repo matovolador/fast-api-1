@@ -1,14 +1,9 @@
-from unittest import TestCase, mock
+from unittest import TestCase
 from main import app
 from fastapi.testclient import TestClient
 
 
-class TestIntegrationMain(TestCase):
-    def setUp(self) -> None:
-        self.client = TestClient(app)
-
-    @mock.patch('main.products', [])
-    def test_create_product(self) -> None:
+    def test_1_create_product(self) -> None:
         valid_product = {
             "id": 1,
             "name": "Standard-hilt lightsaber",
