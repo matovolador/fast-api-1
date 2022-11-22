@@ -50,6 +50,7 @@ def create_product(product: schemas.ProductCreate):
     
     db.commit()
     db.refresh(product)
+    db.close()
     return product
 
 
