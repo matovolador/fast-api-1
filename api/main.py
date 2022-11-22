@@ -6,7 +6,7 @@ from modules import database, schemas
 app = FastAPI()
 
 @app.post("/v1/products/create",response_model=schemas.Product)
-def create_product(db: database.Session, product: schemas.Product):
+def create_product(db: database.Session, product: schemas.ProductCreate):
     for vari in product.variants:
         variant = database.ProductVariants(
             id = vari.id
