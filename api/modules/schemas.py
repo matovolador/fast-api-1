@@ -47,10 +47,8 @@ class Product(BaseModel):
         orm_mode = True
 
 class VariantCreate(ProductVariant):
-    config_attributes = Optional[List[ConfigAttribute]]
+    config_attributes : Optional[List[ConfigAttribute]]
 
-    class Config:
-        arbitrary_types_allowed = True
 
 class ProductCreate(Product):
     variants: List[VariantCreate]  
