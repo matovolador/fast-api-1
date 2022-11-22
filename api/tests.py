@@ -45,6 +45,8 @@ class Tests(TestCase):
         response = self.client.post('/v1/products/create', json=valid_product)
 
         self.assertEqual(200, response.status_code)
+
+if __name__ == "__main__":
     # clean db
     db = next(database.get_db())
     db.query(database.ConfigAttribute).delete()
@@ -52,3 +54,6 @@ class Tests(TestCase):
     db.query(database.Product).delete()
     db.commit()
     db.close()
+    # -- 
+    tester = Tests()
+    tester.test_1_create_product()
