@@ -6,8 +6,20 @@ from modules import database, schemas
 app = FastAPI()
 
 @app.post("/v1/products/create")
-def create_product(product:schemas.Product):
+def create_product(db: database.Session, product: schemas.Product):
+    for vari in product.variants:
+        variant = database.ProductVariants(
+            id = vari.id
+        )
+        db.add(variant)
+    product = database.Product(
+        name = product.name
+    )
 
+    db.add(product)
+    db.commit()
+    db.refresh(product)
+    return product
 
 
 if __name__ == "__main__":
