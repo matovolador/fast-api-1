@@ -6,32 +6,33 @@ from datetime import datetime
 
 app = FastAPI()
 
-@app.post("/v1/products/create",response_model=schemas.Product)
+@app.post("/v1/products/create")
 def create_product(product: schemas.ProductCreate):
     db = next(database.get_db())
-    product = database.Product(
+    prod = database.Product(
         name = product.name,
         uom = product.uom,
         category_name = product.category_name,
         is_producible = product.is_producible,
+        is_purchasable = product.is_purchasable,
         type = 'product',
         additional_info = product.additional_info,
         purchase_uom = product.purchase_uom,
         purchase_uom_conversion_rate = product.purchase_uom_conversion_rate,
         batch_tracked = product.batch_tracked,
-        created = datetime.now(),
+        created_at = datetime.now(),
         updated_at = datetime.now()
     )
-    db.add(product)
+    db.add(prod)
     db.commit()
-    db.refresh(product)
+    db.refresh(prod)
 
     for vari in product.variants:
         variant = database.ProductVariant(
             sku = vari.sku,
             sales_price = vari.sales_price,
-            product_id = product.id,
-            type = product,
+            product_id = prod.id,
+            type = 'product',
             created_at = datetime.now(),
             updated_at = datetime.now()
         )
@@ -49,9 +50,9 @@ def create_product(product: schemas.ProductCreate):
 
     
     db.commit()
-    db.refresh(product)
+    db.refresh(prod)
     db.close()
-    return product
+    return prod.as_dict()
 
 
 if __name__ == "__main__":

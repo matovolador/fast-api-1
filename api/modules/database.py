@@ -50,7 +50,7 @@ class Product(BaseMixin,Base):
     purchase_uom = Column(String,nullable=True,default=None)
     purchase_uom_conversion_rate = Column(Numeric,default=None,nullable=True)
     batch_tracked = Column(Boolean,nullable=False,default=False)
-    created = Column(DateTime(timezone=True),nullable=False, default=func.now())
+    created_at = Column(DateTime(timezone=True),nullable=False, default=func.now())
     updated_at = Column(DateTime(timezone=True),default=func.now())
 
 

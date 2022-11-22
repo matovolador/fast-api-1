@@ -1,14 +1,14 @@
-from unittest import TestCase, mock
+from unittest import TestCase
 from main import app
 from fastapi.testclient import TestClient
+from modules import database
 
+class Tests(TestCase):
+    def __init__(self):
+        super().__init__()
+        self.client =  TestClient(app)
 
-class TestIntegrationMain(TestCase):
-    def setUp(self) -> None:
-        self.client = TestClient(app)
-
-    @mock.patch('main.products', [])
-    def test_create_product(self) -> None:
+    def test_1_create_product(self) -> None:
         valid_product = {
             "id": 1,
             "name": "Standard-hilt lightsaber",
@@ -43,6 +43,19 @@ class TestIntegrationMain(TestCase):
             "updated_at": "2020-10-23T10:37:05.085Z"
         }
         response = self.client.post('/v1/products/create', json=valid_product)
-
+        print(response.text)
         self.assertEqual(200, response.status_code)
-        self.assertEqual(valid_product, response.json())
+        print(response.json())
+        print("test 1 completed")
+
+if __name__ == "__main__":
+    # clean db
+    db = next(database.get_db())
+    db.query(database.ConfigAttribute).delete()
+    db.query(database.ProductVariant).delete()
+    db.query(database.Product).delete()
+    db.commit()
+    db.close()
+    # -- 
+    tester = Tests()
+    tester.test_1_create_product()
