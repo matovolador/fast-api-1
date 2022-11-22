@@ -2,6 +2,10 @@ from unittest import TestCase
 from main import app
 from fastapi.testclient import TestClient
 
+class Tests(TestCase):
+    def __init__(self):
+        super().__init__()
+        self.client =  TestClient(app)
 
     def test_1_create_product(self) -> None:
         valid_product = {
