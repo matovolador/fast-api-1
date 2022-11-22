@@ -24,7 +24,7 @@ services:
       - PGPORT=5432
 
 networks:
-  db-network:
+  unbridaled_test-network:
     driver: bridge
 volumes:
   db-unbridaled_test-data:
