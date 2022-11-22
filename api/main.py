@@ -36,6 +36,16 @@ def create_product(db: database.Session, product: schemas.ProductCreate):
         db.add(variant)
         db.commit()
         db.refresh(variant)
+
+        for config in vari.config_attributes:
+            config_attr = database.ConfigAttribute(
+                config_name = config.config_name,
+                config_value = config.config_value,
+                variant_id = variant.id 
+            )
+            db.add(config_attr)
+
+    
     db.commit()
     db.refresh(product)
     return product
