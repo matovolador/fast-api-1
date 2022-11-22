@@ -40,8 +40,8 @@ class Product(BaseModel):
     class Config:
         orm_mode = True
 
-class ProductCreate(Product):
-    variants: List[ProductVariant]
-
 class VariantsCreate(ProductVariant):
-    config_attributes = List[ConfigAttribute]    
+    config_attributes = List[ConfigAttribute]  
+
+class ProductCreate(Product):
+    variants: List[VariantsCreate]  
