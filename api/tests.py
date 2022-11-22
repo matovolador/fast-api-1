@@ -43,7 +43,7 @@ class Tests(TestCase):
             "updated_at": "2020-10-23T10:37:05.085Z"
         }
         response = self.client.post('/v1/products/create', json=valid_product)
-
+        print(response.text)
         self.assertEqual(200, response.status_code)
 
 if __name__ == "__main__":
