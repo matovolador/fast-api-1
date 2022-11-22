@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, root_validator
 from typing import Optional,List
 from datetime import datetime, date
 
@@ -36,6 +36,13 @@ class Product(BaseModel):
     purchase_uom: Optional[str]
     purchase_uom_conversion_rate: Optional[float]
     batch_tracked: bool
+
+    @root_validator
+    def conversion_rate_not_none_if_purchase_uom_is_none(cls, values):
+        p_uom, c_rate = values.get('purchase_uom'), values.get('conversion_rate')
+        if p_uom is not None and c_rate is None:
+            raise ValueError('purchase_uom_conversion_rate must be populated if purchase_uom is not null')
+        return values
 
     class Config:
         orm_mode = True
