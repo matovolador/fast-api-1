@@ -8,8 +8,7 @@ class ConfigAttribute(BaseModel):
     config_value: str
     variant_id : int
 
-    class Config:
-        orm_mode = True
+    
 
 class ProductVariant(BaseModel):
     id : int
@@ -52,5 +51,4 @@ class VariantCreate(ProductVariant):
 
 class ProductCreate(Product):
     variants: List[VariantCreate]  
-    class Config:
-        arbitrary_types_allowed = True
+
