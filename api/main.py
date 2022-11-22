@@ -9,7 +9,7 @@ app = FastAPI()
 @app.post("/v1/products/create",response_model=schemas.Product)
 def create_product(product: schemas.ProductCreate):
     db = next(database.get_db())
-    product = database.Product(
+    prod = database.Product(
         name = product.name,
         uom = product.uom,
         category_name = product.category_name,
@@ -22,9 +22,9 @@ def create_product(product: schemas.ProductCreate):
         created = datetime.now(),
         updated_at = datetime.now()
     )
-    db.add(product)
+    db.add(prod)
     db.commit()
-    db.refresh(product)
+    db.refresh(prod)
 
     for vari in product.variants:
         variant = database.ProductVariant(
