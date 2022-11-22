@@ -64,7 +64,7 @@ class ProductVariant(BaseMixin,Base):
     type = Column(String,nullable=False,default='product')
     created_at = Column(DateTime(timezone=True),nullable=False, default=func.now())
     updated_at = Column(DateTime(timezone=True),default=func.now())
-    product_id = Column(Integer, ForeignKey=Product.id)
+    product_id = Column(Integer, ForeignKey(Product.id))
 
 
 class ConfigAttribute(BaseMixin,Base):
