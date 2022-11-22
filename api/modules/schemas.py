@@ -18,12 +18,9 @@ class ProductVariant(BaseModel):
     product_id: int
     purchase_price: float
     type: str
-    created_at: datetime
-    updated_at = datetime
-    product_id : int
+    created_at: str
+    updated_at = str
 
-    class Config:
-        orm_mode = True
 class Product(BaseModel):
     id: int
     name: str
@@ -36,6 +33,8 @@ class Product(BaseModel):
     purchase_uom: Optional[str]
     purchase_uom_conversion_rate: Optional[float]
     batch_tracked: bool
+    created_at : str
+    updated_at : str
 
     @root_validator
     def conversion_rate_not_none_if_purchase_uom_is_none(cls, values):
