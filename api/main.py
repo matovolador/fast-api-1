@@ -6,7 +6,7 @@ from datetime import datetime
 
 app = FastAPI()
 
-@app.post("/v1/products/create")
+@app.post("/v1/products/create",response_model=dict)
 def create_product(product: schemas.ProductCreate):
     prod = False
     inserted_variants = []
