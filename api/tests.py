@@ -26,3 +26,5 @@ if __name__ == "__main__":
     db.query(database.Product).delete()
     db.commit()
     db.close()
+    # -- 
+    tester = Tests()
