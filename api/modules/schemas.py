@@ -47,6 +47,12 @@ class Product(BaseModel):
             raise ValueError('purchase_uom_conversion_rate must be populated if purchase_uom is not null')
         return values
 
+    @validator('type')
+    def product_type(cls, v):
+        if v != 'product':
+            raise ValueError('invalid product type')
+        return v
+
     class Config:
         orm_mode = True
 
