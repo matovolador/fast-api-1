@@ -9,3 +9,11 @@ class Tests(TestCase):
         self.client =  TestClient(app)
 
     def test_1_create_product(self,product_data, should_fail=False) -> None:
+        response = self.client.post('/v1/products/create', json=product_data)
+        print(response.text)
+        if not should_fail:
+            self.assertEqual(200, response.status_code)
+        else:
+            self.assertNotEqual(200,response.status_code)
+        print(response.json())
+        print("test 1 completed")
