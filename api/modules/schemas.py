@@ -1,4 +1,4 @@
-from pydantic import BaseModel, root_validator
+from pydantic import BaseModel, root_validator, validator
 from typing import Optional,List
 from datetime import datetime, date
 
