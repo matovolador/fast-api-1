@@ -17,6 +17,9 @@ def create_product(product: schemas.ProductCreate):
         if prod_:
             raise HTTPException (status_code=400, detail="product name is already in use")
         
+            vari_ = db.query(database.ProductVariant).filter_by(sku=vari.sku).first()
+            if vari_:
+                raise HTTPException(status_code=400, detail="product variant sku is already in use")
             inserted_variants.append(variant)
                     inserted_configs.append(config_attr)
 
