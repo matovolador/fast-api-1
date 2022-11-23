@@ -18,6 +18,7 @@ class Tests(TestCase):
         print(response.json())
         print("test 1 completed")
 
+if __name__ == "__main__":
     # clean db
     db = next(database.get_db())
     db.query(database.ConfigAttribute).delete()
