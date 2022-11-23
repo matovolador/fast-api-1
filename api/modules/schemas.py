@@ -34,8 +34,8 @@ class Product(BaseModel):
     is_purchasable: bool
     type: str
     additional_info: str
-    purchase_uom: Optional[str]
-    purchase_uom_conversion_rate: Optional[float]
+    purchase_uom: Optional[str] = ...
+    purchase_uom_conversion_rate: Optional[float] = ...
     batch_tracked: bool
     created_at : str
     updated_at : str
@@ -53,8 +53,6 @@ class Product(BaseModel):
             raise ValueError('invalid product type')
         return v
 
-    class Config:
-        orm_mode = True
 
 class VariantCreate(ProductVariant):
     config_attributes : Optional[List[ConfigAttribute]]

@@ -68,7 +68,7 @@ def create_product(product: schemas.ProductCreate):
         db.refresh(prod)
         db.close()
         return {'id':prod.as_dict()['id']}
-    except Exception as e:
+    except ValueError as e:
         for entry in inserted_configs:
             db.delete(entry)
         for entry in inserted_variants:
