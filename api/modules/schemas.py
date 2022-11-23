@@ -19,6 +19,12 @@ class ProductVariant(BaseModel):
     created_at: str
     updated_at = str
 
+    @validator('type')
+    def variant_type(cls, v):
+        if v != 'product':
+            raise ValueError('invalid product type')
+        return v
+
 class Product(BaseModel):
     id: int
     name: str
