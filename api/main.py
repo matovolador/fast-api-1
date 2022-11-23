@@ -12,6 +12,11 @@ def create_product(product: schemas.ProductCreate):
     inserted_variants = []
     inserted_configs = []
     db = next(database.get_db())
+    try:
+        prod_ = db.query(database.Product).filter_by(name=product.name).first()
+        if prod_:
+            raise HTTPException (status_code=400, detail="product name is already in use")
+        
             inserted_variants.append(variant)
                     inserted_configs.append(config_attr)
 
