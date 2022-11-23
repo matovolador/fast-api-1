@@ -17,3 +17,11 @@ class Tests(TestCase):
             self.assertNotEqual(200,response.status_code)
         print(response.json())
         print("test 1 completed")
+
+    # clean db
+    db = next(database.get_db())
+    db.query(database.ConfigAttribute).delete()
+    db.query(database.ProductVariant).delete()
+    db.query(database.Product).delete()
+    db.commit()
+    db.close()
