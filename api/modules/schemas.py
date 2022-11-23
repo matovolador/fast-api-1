@@ -53,8 +53,6 @@ class Product(BaseModel):
             raise ValueError('invalid product type')
         return v
 
-    class Config:
-        orm_mode = True
 
 class VariantCreate(ProductVariant):
     config_attributes : Optional[List[ConfigAttribute]]
