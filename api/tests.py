@@ -62,3 +62,5 @@ if __name__ == "__main__":
         "updated_at": "2020-10-23T10:37:05.085Z"
     }
     tester.test_1_create_product(valid_product)
+    
+    tester.test_1_create_product(valid_product,should_fail=True) # name already taken
