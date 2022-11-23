@@ -1,4 +1,4 @@
-from pydantic import BaseModel, root_validator
+from pydantic import BaseModel, root_validator, validator
 from typing import Optional,List
 from datetime import datetime, date
 
@@ -18,6 +18,12 @@ class ProductVariant(BaseModel):
     type: str
     created_at: str
     updated_at = str
+
+    @validator('type')
+    def variant_type(cls, v):
+        if v != 'product':
+            raise ValueError('invalid product type')
+        return v
 
 class Product(BaseModel):
     id: int
@@ -40,6 +46,12 @@ class Product(BaseModel):
         if p_uom is not None and c_rate is None:
             raise ValueError('purchase_uom_conversion_rate must be populated if purchase_uom is not null')
         return values
+
+    @validator('type')
+    def product_type(cls, v):
+        if v != 'product':
+            raise ValueError('invalid product type')
+        return v
 
     class Config:
         orm_mode = True
