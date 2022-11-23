@@ -24,6 +24,7 @@ def create_product(product: schemas.ProductCreate):
             if vari.config_attributes:
                     inserted_configs.append(config_attr)
 
+        return {'id':prod.as_dict()['id']}
         for entry in inserted_configs:
             db.delete(entry)
         for entry in inserted_variants:
