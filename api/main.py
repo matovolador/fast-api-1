@@ -21,6 +21,7 @@ def create_product(product: schemas.ProductCreate):
             if vari_:
                 raise HTTPException(status_code=400, detail="product variant sku is already in use")
             inserted_variants.append(variant)
+            if vari.config_attributes:
                     inserted_configs.append(config_attr)
 
         for entry in inserted_configs:
