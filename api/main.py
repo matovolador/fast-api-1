@@ -23,7 +23,7 @@ def create_product(product: schemas.ProductCreate):
             category_name = product.category_name,
             is_producible = product.is_producible,
             is_purchasable = product.is_purchasable,
-            type = 'product',
+            type = product.type,
             additional_info = product.additional_info,
             purchase_uom = product.purchase_uom,
             purchase_uom_conversion_rate = product.purchase_uom_conversion_rate,
@@ -44,7 +44,7 @@ def create_product(product: schemas.ProductCreate):
                 sku = vari.sku,
                 sales_price = vari.sales_price,
                 product_id = prod.id,
-                type = 'product',
+                type = vari.type,
                 created_at = datetime.now(),
                 updated_at = datetime.now()
             )
